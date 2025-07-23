@@ -9,12 +9,13 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 15px 30px;
+  padding: 5px 35px;
+  background-color:#9B99FF;
   border-bottom:1px solid #333;
 }
 
 .header-left .logo {
-  width: 180px;
+  width: 200px;
   height: 75px;
   object-fit: fill;
   
@@ -28,7 +29,7 @@
 }
 
 .login-btn {
-  border: 1px solid #333;
+  border: 1px solid #fff;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -50,7 +51,14 @@
   margin-left: 10px;
   margin-right: 10px;
   text-decoration: none;
-  color: black;
+  color: white;
+}
+
+.header-right a {
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: white;
 }
 
 
