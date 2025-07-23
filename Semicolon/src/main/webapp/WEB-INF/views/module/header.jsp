@@ -5,13 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 5px 35px;
   background-color:#9B99FF;
-  border-bottom:1px solid #333;
 }
 
 .header-left .logo {
@@ -59,7 +63,7 @@
 }
 
 .header-right a {
-  margin-left: 10px;
+  margin-left: 20px;
   margin-right: 10px;
   text-decoration: none;
   color: white;
@@ -83,9 +87,9 @@
   </div>
   
     <div class="menu">
-      <a href="/pms/main.jsp"><strong><em>PMS</em></strong></a>
-      <a href="/sns/main.jsp"><strong><em>SNS</em></strong></a>
-      <a href="/funding/main.jsp"><strong><em>Crowd Funding</em></strong></a>
+      <a href="/pms/main.jsp"><strong><em>ORGANIZATION</em></strong></a>
+      <a href="/sns/main.jsp"><strong><em>COMMUNITY</em></strong></a>
+      <a href="/funding/main.jsp"><strong><em>CROWD FUNDING</em></strong></a>
     </div>
   </div>
 </div>

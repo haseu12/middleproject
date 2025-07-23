@@ -5,12 +5,17 @@
 <!DOCTYPE html>
 
 <%@ include file="./module/header.jsp" %>
+<style>
+.body {
+  background-color: #f6f6f6;
 
+}
+
+</style>
 
 <html lang="en">
-<head>
- <h1>메인</h1>
-</head>
+<body>
+	<h1>안녕</h1>
 </body>
 </html>
 
