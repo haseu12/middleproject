@@ -18,8 +18,7 @@
   width: 200px;
   height: 75px;
   object-fit: fill;
-  
-  
+ 
 }
 
 .header-right {
@@ -28,10 +27,15 @@
   align-items: flex-end;
 }
 
+.header-right-top {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
 .login-btn {
-  border: 1px solid #fff;
   padding: 6px 12px;
-  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -71,14 +75,17 @@
   </div>
 
   <div class="header-right">
-    <div class="login-btn" onclick="location.href='/user/login.jsp'">
-     <a><strong><em>로그인 / 회원가입</em></strong></a>
+  <div class="header-right-top">
+   <div class="login-btn" onclick="location.href='/user/login.jsp'">
+     <a><strong><em>Logout</em></strong></a>
     </div>
+      <a href="/me/mypage.jsp"><strong><em>My Page</em></strong></a>
+  </div>
+  
     <div class="menu">
       <a href="/pms/main.jsp"><strong><em>PMS</em></strong></a>
       <a href="/sns/main.jsp"><strong><em>SNS</em></strong></a>
       <a href="/funding/main.jsp"><strong><em>Crowd Funding</em></strong></a>
-      <a href="/me/mypage.jsp"><strong><em>My Page</em></strong></a>
     </div>
   </div>
 </div>
