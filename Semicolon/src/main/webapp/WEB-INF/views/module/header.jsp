@@ -87,8 +87,8 @@
   </div>
   
     <div class="menu">
-      <a href="/organization/main.jsp"><strong><em>ORGANIZATION</em></strong></a>
-      <a href="/community/main.jsp"><strong><em>COMMUNITY</em></strong></a>
+      <a href="/organization/main.jsp"><strong><em>COMMUNITY</em></strong></a>
+      <a href="/community/main.jsp"><strong><em>ORGANIZATION</em></strong></a>
       <a href="/funding/main.jsp"><strong><em>CROWD FUNDING</em></strong></a>
     </div>
   </div>
