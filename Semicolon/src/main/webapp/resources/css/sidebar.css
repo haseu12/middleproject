@@ -1,0 +1,101 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* body, wrapper는 전체 페이지 레이아웃과 관련되지만,
+   사이드바의 위치와도 밀접하게 관련되므로 남겨둡니다. */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* 전체 페이지 배경색 (이미지 기반) */
+    display: flex; /* 사이드바와 메인 콘텐츠를 나란히 배치 */
+    height: 100vh; /* 뷰포트 높이에 맞춤 */
+    overflow: hidden; /* 스크롤바 관리 */
+}
+
+/* 전체 래퍼 (사이드바와 메인 콘텐츠를 포함) */
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* 사이드바 스타일 */
+.sidebar-wrapper {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding-top: 72px;
+}
+
+/* 로고 스타일 */
+.sidebar-wrapper .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 로고 이미지와 텍스트 가운데 정렬 */
+    margin-bottom: 30px;
+    padding: 0 20px; /* 로고 영역 패딩 */
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.sidebar-wrapper .logo-image {
+    width: 30px; /* 로고 이미지 크기 */
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* 사이드바 네비게이션 메뉴 */
+.sidebar-nav {
+    width: 100%; /* 메뉴 리스트가 사이드바 전체 너비를 차지하도록 */
+}
+
+.sidebar-nav .menu-list {
+    list-style: none; /* 리스트 점 제거 */
+}
+
+.sidebar-nav .menu-item {
+    margin-bottom: 5px; /* 메뉴 아이템 간 간격 */
+}
+
+.sidebar-nav .menu-link {
+    display: flex; /* 아이콘과 텍스트를 나란히 */
+    align-items: center; /* 수직 가운데 정렬 */
+    padding: 12px 20px; /* 링크 패딩 */
+    color: #666; /* 기본 텍스트 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 15px;
+    transition: background-color 0.2s, color 0.2s; /* 호버 효과 부드럽게 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    margin: 0 10px; /* 좌우 마진으로 둥근 모서리 효과 강조 */
+}
+
+.sidebar-nav .menu-link .icon {
+    margin-right: 10px; /* 아이콘과 텍스트 사이 간격 */
+    font-size: 18px; /* 아이콘 크기 */
+    color: #888; /* 기본 아이콘 색상 */
+}
+
+/* 메뉴 아이템 호버 시 */
+.sidebar-nav .menu-item:not(.active) .menu-link:hover {
+    background-color: #f5f5f5; /* 호버 시 배경색 */
+    color: #333; /* 호버 시 텍스트 색상 */
+}
+
+/* 활성화된 메뉴 아이템 (ISSUE) */
+.sidebar-nav .menu-item.active .menu-link {
+    background-color: #6A3CD7; /* 보라색 배경 (이미지 기반) */
+    color: #ffffff; /* 활성화된 텍스트 색상 */
+    font-weight: bold;
+}
+
+.sidebar-nav .menu-item.active .menu-link .icon {
+    color: #ffffff; /* 활성화된 아이콘 색상 */
+}

@@ -1,0 +1,281 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f0f2f5;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* temporary-main-header는 issueList.jsp에서 제거하기로 했으니
+   CSS에서도 이 부분을 삭제하는 것을 고려할 수 있습니다.
+   만약 남겨둘 예정이라면 여기에 위치시키세요. */
+.temporary-main-header {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.temporary-main-header .nav-item {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 30px;
+    color: #555;
+    text-decoration: none;
+}
+.temporary-main-header .nav-item:hover {
+    color: #6A3CD7;
+}
+
+.page-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+.content-area {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: initial;
+    color: initial;
+    text-align: initial;
+    position: relative; /* 모달 때문에 필요 */
+}
+
+/* 이슈 검색창 및 생성 버튼 컨테이너 */
+.issue-controls {
+    display: flex; /* 검색창과 버튼을 가로로 정렬 */
+    justify-content: space-between; /* 양 끝 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+/* 검색 바 스타일 */
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 300px; /* 검색창 너비 */
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    left: 15px;
+    color: #aaa;
+    font-size: 16px;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* 아이콘 공간 확보를 위한 왼쪽 패딩 */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    outline: none; /* 포커스 시 외곽선 제거 */
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #bbb;
+}
+
+/* 새 이슈 생성 버튼 스타일 */
+.create-issue-btn {
+    background-color: #6A3CD7; /* 보라색 배경 */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.create-issue-btn .fas {
+    margin-right: 8px; /* 아이콘과 텍스트 사이 간격 */
+    font-size: 14px;
+}
+
+.create-issue-btn:hover {
+    background-color: #552cb0; /* 호버 시 색상 변경 */
+}
+
+/* 이슈 목록 테이블 컨테이너 */
+.issue-list-container {
+    flex-grow: 1; /* 테이블이 남은 공간을 채우도록 */
+    overflow-x: auto; /* 테이블 내용이 길어지면 가로 스크롤 */
+    margin-bottom: 20px; /* 페이지네이션과의 간격 */
+}
+
+/* 이슈 테이블 스타일 */
+.issue-table {
+    width: 100%;
+    border-collapse: collapse; /* 테이블 셀 경계선 병합 */
+    font-size: 14px;
+    color: #333;
+    background-color: #ffffff; /* 테이블 배경색 */
+}
+
+.issue-table th, .issue-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; /* 셀 하단 경계선 */
+}
+
+.issue-table th {
+    background-color: #f8f8f8; /* 헤더 배경색 */
+    font-weight: bold;
+    color: #555;
+    white-space: nowrap; /* 헤더 텍스트 줄바꿈 방지 */
+}
+
+/* 담당자 아바타 */
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* 원형으로 표시 */
+    object-fit: cover; /* 이미지 비율 유지 */
+    vertical-align: middle; /* 텍스트와 수직 정렬 */
+}
+
+/* 상태 아이콘 (테이블 첫 번째 열) */
+.status-icon {
+    font-size: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.status-icon.ongoing { color: #5cb85c; } /* 녹색 */
+.status-icon.completed { color: #5bc0de; } /* 파란색 */
+.status-icon.inreview { color: #f0ad4e; } /* 주황색 */
+.status-icon.pending { color: #d9534f; } /* 빨간색 */
+
+/* 상태 배지 (테이블 상태 열) */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.status-badge.ongoing-badge { background-color: #5cb85c; }
+.status-badge.completed-badge { background-color: #5bc0de; }
+.status-badge.inreview-badge { background-color: #f0ad4e; }
+.status-badge.pending-badge { background-color: #d9534f; }
+.modal {
+    display: none; /* 처음에는 숨김 */
+    position: fixed; /* 화면의 가운데에 고정 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 가운데 정렬 */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* 오버레이 위에 표시 */
+    width: 400px; /* 적절한 너비 설정 */
+}
+
+.modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-buttons .confirm-btn {
+    background-color: #6A3CD7;
+    color: #fff;
+}
+
+.modal-buttons .confirm-btn:hover {
+    background-color: #552cb0;
+}
+
+.modal-buttons .cancel-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.modal-buttons .cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* 배경 흐림 효과 스타일 */
+body.modal-active .wrapper .main-content {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    pointer-events: none; /* 흐려진 영역 클릭 방지 */
+}
